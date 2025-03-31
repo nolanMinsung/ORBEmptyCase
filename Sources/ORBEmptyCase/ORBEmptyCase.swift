@@ -6,7 +6,7 @@ import UIKit
 import SnapKit
 
 
-protocol ORBEmptyCaseStyle: UIView {
+public protocol ORBEmptyCaseStyle: UIView {
     func showEmptyPlaceholder(view: some ORBEmptyCaseViewType)
     func removeEmptyPlaceholder()
 }
@@ -35,7 +35,7 @@ extension ORBEmptyCaseStyle {
     
 }
 
-protocol ORBEmptyCaseViewType: UIView {
+public protocol ORBEmptyCaseViewType: UIView {
     var emptyCaseMessage: String { get }
     var emptyCaseImage: UIImage { get }
 }
