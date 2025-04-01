@@ -7,13 +7,15 @@ import SnapKit
 
 
 public protocol ORBEmptyCaseStyle: UIView {
-    func showEmptyPlaceholder(view: some ORBEmptyCaseViewType)
+    associatedtype placeholder: ORBEmptyCaseViewType
+    
+    func showEmptyPlaceholder(view: placeholder)
     func removeEmptyPlaceholder()
 }
 
-extension ORBEmptyCaseStyle {
+public extension ORBEmptyCaseStyle {
     
-    func showEmptyPlaceholder(view: some ORBEmptyCaseViewType) {
+    func showEmptyPlaceholder(view: placeholder) {
         addSubview(view)
         view.snp.makeConstraints { make in
             if let scrollView = self as? UIScrollView {
@@ -27,7 +29,7 @@ extension ORBEmptyCaseStyle {
     
     func removeEmptyPlaceholder() {
         subviews.forEach { view in
-            if view is ORBEmptyCaseViewType {
+            if view is placeholder {
                 view.removeFromSuperview()
             }
         }
@@ -37,5 +39,4 @@ extension ORBEmptyCaseStyle {
 
 public protocol ORBEmptyCaseViewType: UIView {
     var emptyCaseMessage: String { get }
-    var emptyCaseImage: UIImage { get }
 }
